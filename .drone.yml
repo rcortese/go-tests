@@ -3,7 +3,12 @@ type: docker
 name: default
 
 steps:
-- name: example
+- name: build
   image: golang
   commands:
   - go build
+- name: publish
+  image: plugins/github-release
+  settings:
+    api_key: xxxxxxxx
+    files: dist/*
