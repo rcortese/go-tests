@@ -6,9 +6,12 @@ steps:
 - name: build
   image: golang
   commands:
-  - go build
+  - mkdir dist
+  - go build -o dist/
 - name: publish
   image: plugins/github-release
   settings:
     api_key: xxxxxxxx
     files: dist/*
+  when:
+    event: tag
